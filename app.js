@@ -10,3 +10,6 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log("sever is running on port 3001");
 });
+
+
+export default app;
