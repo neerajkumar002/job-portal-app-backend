@@ -1,9 +1,11 @@
 import express from "express";
-
+import connectToDatabase from "./database/db.js";
+import authRouter from "./routes/auth.routes.js";
 const app = express();
 
-app.get("/", (req, res) => {
-  res.status(200).json({ message: "Test Route" });
-});
+connectToDatabase();
+
+//routes
+app.use("/api/v1/auth", authRouter);
 
 export default app;
