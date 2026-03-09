@@ -51,6 +51,24 @@ export const getJobDetails = async (req, res) => {
   }
 };
 
+//get all jobs
+
+export const getjobs = async (req, res) => {
+  try {
+    const jobs = await Jobs.find();
+
+    if (!jobs) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Jobs not found" });
+    }
+
+    return res.status(200).json({ success: true, data: jobs });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // Update job
 export const updateJobDetails = async (req, res) => {
   try {
