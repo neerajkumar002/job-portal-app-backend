@@ -78,8 +78,15 @@ export const updateJobDetails = async (req, res) => {
 };
 
 // Delete job
-export const deleteJobDetails = async (req, res) => {
+export const deleteJob = async (req, res) => {
   try {
+    const { id } = req.params;
+
+    await Jobs.deleteOne({ _id: id });
+
+    return res
+      .status(200)
+      .json({ success: true, message: "Post deleted successfully" });
   } catch (error) {
     console.log(error);
   }
