@@ -6,7 +6,7 @@ import { JWT_EXPIRED_IN, JWT_SECRET } from "../config/env.js";
 //user signup controller
 export const signUp = async (req, res, next) => {
   try {
-    console.log(req.body);
+  
     const { name, email, password } = req.body;
 
     //check if user already exists
@@ -46,7 +46,6 @@ export const signUp = async (req, res, next) => {
 export const signIn = async (req, res) => {
   try {
     const { email, password } = req.body;
-   
 
     //check user is vaild
     const user = await User.findOne({ email });
@@ -67,7 +66,7 @@ export const signIn = async (req, res) => {
     }
 
     // generate token
-    const token = jwt.sign({ userId: user?._id }, JWT_SECRET, {
+    const token = jwt.sign({ userId: user?._id, role: user.role }, JWT_SECRET, {
       expiresIn: JWT_EXPIRED_IN,
     });
 
